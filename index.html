@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!--Title of the Webpage-->
+    <title>
+      Code Quiz
+    </title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <a href="highscores.html">View Highscores</a>
+    <h4>Timer: <span id="count">0</span></h4>
+
+    <!--main area-->
+    <div id="quizContainer" class="container">
+      <h1>CODING QUIZ CHALLENGE</h1>
+      <p class="instructions">
+        Try to answer the following code-related questions within the time
+        limit. Keep in mind that incorrect answers will penalize your scoretime
+        by ten seconds
+      </p>
+      <!--This div contains question and answers-->
+      <div id="label" class="content">
+        <div id="quizQuestion" class="question"></div>
+        <div id="rightOrWrong" style="display: none;">
+          <hr />
+          <span id="displayAnswer"></span>
+        </div>
+      </div>
+      <!--Button to start the quiz-->
+      <button id="startQuiz">Start Quiz</button>
+    </div>
+    <!--This div contains the All Done and score details page-->
+    <div id="allDone" class="container" style="display: none;">
+      <h2>All Done!</h2>
+      <p id="finalScore">Your final Score is "final Score"</p>
+    </div>
+    <div id="enterInitials" style="display: none;">
+      <label for="initials">Enter Initials: </label>
+      <span><input name="userinitial" id="initial" type="text" /></span>
+      <span id="submit"><button id="submitBtn">submit</button></span>
+    </div>
+    <!--Highscore-->
+    <a href="highscores.html"></a>
+
+    <script src="script.js"></script>
+  </body>
+</html>
