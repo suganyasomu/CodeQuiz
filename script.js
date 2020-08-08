@@ -22,10 +22,16 @@ var finalScore = document.querySelector("#finalScore");
 var enterInitials = document.querySelector("#enterInitials");
 var submit = document.querySelector("#submit");
 var submitBtn = document.querySelector("#submitBtn");
-var highscore = document.querySelector("highscore");
-var highscoreList = document.querySelector("highscoreList");
-var goBackBtn = document.querySelector("goBack");
-var clearHighscoresBtn = document.querySelector("clearHighscores");
+var initial = document.querySelector("#initial");
+
+
+var highscore = document.querySelector("#highscore");
+var highscoreList = document.querySelector("#highscoreList");
+var highscoreHeader = document.querySelector("#highscore-header");
+var goBackBtn = document.querySelector("#goBack");
+var clearHighscoresBtn = document.querySelector("#clearHighscores");
+var addList = document.querySelector("#addList");
+var viewScore = document.querySelector("#viewScore");
 
 var opt1 = document.getElementById("opt1");
 var opt2 = document.getElementById("opt2");
@@ -43,8 +49,7 @@ var opt4 = document.getElementById("opt4");
 // startBttn.setAttribute("style", "background-color : purple");
 
 //Load question and answer in array objects
-var myQuestion = [
-  {
+var myQuestion = [{
     question: "Which one is not a vegetable?",
     options: ["1.orange", "2.Tomato", "3.cabbage", "4.beet"],
     answer: "1.orange",
@@ -129,6 +134,8 @@ function navigateAllDone() {
   allDone.setAttribute("style", "display:block;");
   finalScore.textContent = "Your final score is " + score;
   enterInitials.setAttribute("style", "display:block;");
+
+
 }
 
 //Sets answer from array object to the buttons
@@ -180,6 +187,7 @@ function removeButton() {
 }
 
 //Step 2: This event is executed and calls SetTime function when the user clicks on the "start Quiz" button
+console.log(startBttn);
 startBttn.addEventListener("click", setTime);
 
 //Step 1: Executes when the page is loaded
@@ -188,14 +196,44 @@ function load() {
 }
 window.addEventListener("load", load);
 
-function highscore() {
-  console.log("highscore method is called");
-  location.href = "highscores.html";
+function highscores() {
+
+  var getInitials = document.getElementById("initial").value;
+  var arr = [getInitials];
+  getInitials.innerText = "";
+  allDone.setAttribute("style", "display:none;");
+  enterInitials.setAttribute("style", "display:none;");
+  highscore.setAttribute("style", "display:block;");
+  for (var i = 0; i < arr.length; i++) {
+    var getNameList = document.createElement("li");
+    addList.appendChild(getNameList);
+    getNameList.textContent = getInitials + "-" + score;
+  }
 }
-submitBtn.addEventListener("click", highscore);
+console.log(submitBtn);
+submitBtn.addEventListener("click", highscores);
 
 function goBack() {
-  location.href = "index.html";
+  highscore.setAttribute("style", "display:none");
+  hTag.setAttribute("style", "display:block");
+  ptag.setAttribute("style", "display:block");
+  startBttn.setAttribute("style", "display:inline-block");
+
+
 }
 
-goBack.addEventListener("click", goBack);
+function clearHighScore() {
+  addList.setAttribute("style", "display:none;");
+}
+
+function viewHighScore() {
+  quizContainer.setAttribute("style", "display:none;");
+  allDone.setAttribute("style", "display:none;");
+  enterInitials.setAttribute("style", "display:none;");
+  highscore.setAttribute("style", "display:block");
+}
+
+
+goBackBtn.addEventListener("click", goBack);
+clearHighscoresBtn.addEventListener("click", clearHighScore);
+viewScore.addEventListener("click", viewHighScore);

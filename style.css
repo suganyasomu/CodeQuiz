@@ -43,3 +43,15 @@ div {
     font-size: medium;
     font-weight: 500;
 }
+
+#addInitialList {
+    border: 1px solid grey;
+    background: antiquewhite;
+}
+
+#addList {
+    width: 10%;
+    text-align: center;
+    background-color: burlywood;
+    margin-left: 550px;
+}

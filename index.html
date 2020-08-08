@@ -13,7 +13,7 @@
   </head>
 
   <body>
-    <a href="highscores.html">View Highscores</a>
+    <a id="viewScore" href="#">View Highscores</a>
     <h4>Timer: <span id="count">0</span></h4>
 
     <!--main area-->
@@ -46,7 +46,15 @@
       <span id="submit"><button id="submitBtn">submit</button></span>
     </div>
     <!--Highscore page-->
-    <a href="highscores.html"></a>
+    <!-- <a href="highscores.html"></a> -->
+    <div id="highscore" style="display: none;">
+      <h1 id="highscore-header">HighScores</h1>
+      <div id="highscoreList">
+        <ol id="addList"></ol>
+        <span><button id="goBack">GoBack</button></span>
+        <span><button id="clearHighscores">Clear highscores</button></span>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>
