@@ -2,6 +2,7 @@
 var count;
 var currentQuestion;
 var score;
+var getNameList;
 
 //Connect to HTML and store it in variables
 var hTag = document.querySelector("h1");
@@ -36,6 +37,7 @@ var opt1 = document.getElementById("opt1");
 var opt2 = document.getElementById("opt2");
 var opt3 = document.getElementById("opt3");
 var opt4 = document.getElementById("opt4");
+
 
 //timer.setAttribute("style", "margin-left:1000px ; margin-bottom:100px ;");
 //hTag.setAttribute("style", "text-align:center");
@@ -212,16 +214,31 @@ function highscores() {
   enterInitials.setAttribute("style", "display:none;");
   highscore.setAttribute("style", "display:block;");
   for (var i = 0; i < arr.length; i++) {
-    var getNameList = document.createElement("li");
+    getNameList = document.createElement("li");
     addList.appendChild(getNameList);
     getNameList.textContent = getInitials + "-" + score;
-    window.localStorage.setItem('list', JSON.stringify(getNameList));
+    var value = getNameList.textContent;
 
-    //getNameList.textContent = window.localStorage.getItem('list');
     console.log(getNameList);
 
 
   }
+  // window.localStorage.setItem('list', value);
+
+  // console.log(window.localStorage.getItem('list'));
+
+}
+
+//This function is called when the user clicks on the view highscore button
+function viewHighscores() {
+  quizContainer.setAttribute("style", "display:none;");
+  var getInitials = document.getElementById("initial").value;
+  var arr = [getInitials];
+  getInitials.innerText = "";
+  allDone.setAttribute("style", "display:none;");
+  enterInitials.setAttribute("style", "display:none;");
+  highscore.setAttribute("style", "display:block;");
+
 }
 //All done page -submit button
 submitBtn.addEventListener("click", highscores);
@@ -247,4 +264,4 @@ goBackBtn.addEventListener("click", goBack);
 //Highscore page - ClearHighscore button
 clearHighscoresBtn.addEventListener("click", clearHighScore);
 //Viewhighscore link
-viewScore.addEventListener("click", highscores);
+viewScore.addEventListener("click", viewHighscores);
