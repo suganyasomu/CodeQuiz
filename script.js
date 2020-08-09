@@ -1,7 +1,7 @@
 //Set initial value to variables
-var count = 76;
-var currentQuestion = 0;
-var score = 0;
+var count;
+var currentQuestion;
+var score;
 
 //Connect to HTML and store it in variables
 var hTag = document.querySelector("h1");
@@ -23,7 +23,6 @@ var enterInitials = document.querySelector("#enterInitials");
 var submit = document.querySelector("#submit");
 var submitBtn = document.querySelector("#submitBtn");
 var initial = document.querySelector("#initial");
-
 
 var highscore = document.querySelector("#highscore");
 var highscoreList = document.querySelector("#highscoreList");
@@ -96,6 +95,9 @@ newDiv.setAttribute("id", "div-btn");
 
 //It sets the timer on and off when this method is called
 function setTime() {
+  count = 76;
+  currentQuestion = 0;
+  score = 0;
   var timerInterval = setInterval(function () {
     count -= 1;
     countEl.textContent = count;
@@ -107,6 +109,9 @@ function setTime() {
   }, 1000);
 
   content[0].setAttribute("style", "display:inline-block;");
+  questionE1.setAttribute("style", "display:block;");
+
+
   hTag.setAttribute("style", "display:none");
   ptag.setAttribute("style", "display:none");
   startBttn.setAttribute("style", "display:none");
@@ -124,6 +129,7 @@ function loadQuestion() {
     questionE1.textContent = currentQuestion + 1 + "." + index.question;
     loadAnswer();
   } else {
+
     navigateAllDone();
   }
 }
@@ -134,8 +140,6 @@ function navigateAllDone() {
   allDone.setAttribute("style", "display:block;");
   finalScore.textContent = "Your final score is " + score;
   enterInitials.setAttribute("style", "display:block;");
-
-
 }
 
 //Sets answer from array object to the buttons
@@ -163,11 +167,13 @@ function validateAnswer(txt) {
   if (myQuestion[currentQuestion].answer === txt) {
     rightOrwrong.setAttribute("style", "display:block");
     displayAnswer.textContent = "Right!";
+    displayAnswer.setAttribute("style", "Background-color:green");
     score += 10;
   } else {
     count = count - 5;
     rightOrwrong.setAttribute("style", "display:block");
     displayAnswer.textContent = "Wrong!";
+    displayAnswer.setAttribute("style", "Background-color:red");
   }
 
   setTimeout(function () {
@@ -175,7 +181,7 @@ function validateAnswer(txt) {
     currentQuestion++;
     removeButton();
     loadQuestion();
-  }, 2000);
+  }, 1000);
 }
 
 //To remove the butons before the next quesion loads
@@ -187,7 +193,6 @@ function removeButton() {
 }
 
 //Step 2: This event is executed and calls SetTime function when the user clicks on the "start Quiz" button
-console.log(startBttn);
 startBttn.addEventListener("click", setTime);
 
 //Step 1: Executes when the page is loaded
@@ -196,8 +201,10 @@ function load() {
 }
 window.addEventListener("load", load);
 
-function highscores() {
 
+//This is called when submit button is clicked from All done page 
+function highscores() {
+  quizContainer.setAttribute("style", "display:none;");
   var getInitials = document.getElementById("initial").value;
   var arr = [getInitials];
   getInitials.innerText = "";
@@ -208,32 +215,36 @@ function highscores() {
     var getNameList = document.createElement("li");
     addList.appendChild(getNameList);
     getNameList.textContent = getInitials + "-" + score;
+    window.localStorage.setItem('list', JSON.stringify(getNameList));
+
+    //getNameList.textContent = window.localStorage.getItem('list');
+    console.log(getNameList);
+
+
   }
 }
-console.log(submitBtn);
+//All done page -submit button
 submitBtn.addEventListener("click", highscores);
 
+//This goes back to Start quiz page when the user clicks on "GoBack button" from highscore page 
 function goBack() {
+  quizContainer.setAttribute("style", "display:block;");
   highscore.setAttribute("style", "display:none");
+
   hTag.setAttribute("style", "display:block");
   ptag.setAttribute("style", "display:block");
   startBttn.setAttribute("style", "display:inline-block");
 
-
 }
 
+//Highscore page - This clears the highscore from the list
 function clearHighScore() {
   addList.setAttribute("style", "display:none;");
 }
 
-function viewHighScore() {
-  quizContainer.setAttribute("style", "display:none;");
-  allDone.setAttribute("style", "display:none;");
-  enterInitials.setAttribute("style", "display:none;");
-  highscore.setAttribute("style", "display:block");
-}
-
-
+//Highscore page - GoBack button
 goBackBtn.addEventListener("click", goBack);
+//Highscore page - ClearHighscore button
 clearHighscoresBtn.addEventListener("click", clearHighScore);
-viewScore.addEventListener("click", viewHighScore);
+//Viewhighscore link
+viewScore.addEventListener("click", highscores);
