@@ -206,35 +206,30 @@ window.addEventListener("load", load);
 
 //This is called when submit button is clicked from All done page 
 function highscores() {
+  addList.setAttribute("style", "display:block;");
   quizContainer.setAttribute("style", "display:none;");
   var getInitials = document.getElementById("initial").value;
+  document.getElementById("initial").value = "";
   var arr = [getInitials];
-  getInitials.innerText = "";
   allDone.setAttribute("style", "display:none;");
   enterInitials.setAttribute("style", "display:none;");
   highscore.setAttribute("style", "display:block;");
+
   for (var i = 0; i < arr.length; i++) {
     getNameList = document.createElement("li");
     addList.appendChild(getNameList);
     getNameList.textContent = getInitials + "-" + score;
-    var value = getNameList.textContent;
-
-    console.log(getNameList);
-
 
   }
-  // window.localStorage.setItem('list', value);
-
-  // console.log(window.localStorage.getItem('list'));
 
 }
 
 //This function is called when the user clicks on the view highscore button
 function viewHighscores() {
+
   quizContainer.setAttribute("style", "display:none;");
   var getInitials = document.getElementById("initial").value;
   var arr = [getInitials];
-  getInitials.innerText = "";
   allDone.setAttribute("style", "display:none;");
   enterInitials.setAttribute("style", "display:none;");
   highscore.setAttribute("style", "display:block;");
@@ -256,6 +251,7 @@ function goBack() {
 
 //Highscore page - This clears the highscore from the list
 function clearHighScore() {
+  addList.textContent = "";
   addList.setAttribute("style", "display:none;");
 }
 
