@@ -9,7 +9,8 @@ var hTag = document.querySelector("h1");
 var ptag = document.querySelector("p");
 var divTag = document.querySelectorAll("div");
 var startBttn = document.getElementById("startQuiz");
-var timer = document.querySelector("h4");
+var timer = document.querySelector("#timer");
+console.log(timer);
 
 var radio = document.querySelectorAll("radio");
 var allDone = document.querySelector("#allDone");
@@ -38,16 +39,6 @@ var opt2 = document.getElementById("opt2");
 var opt3 = document.getElementById("opt3");
 var opt4 = document.getElementById("opt4");
 
-
-//timer.setAttribute("style", "margin-left:1000px ; margin-bottom:100px ;");
-//hTag.setAttribute("style", "text-align:center");
-// ptag.setAttribute(
-//   "style",
-//   "font-size: 20px",
-//   "font-family:Helvetica, sans-serif"
-// );
-// divTag[0].setAttribute("style", "text-align:center");
-// startBttn.setAttribute("style", "background-color : purple");
 
 //Load question and answer in array objects
 var myQuestion = [{
@@ -206,6 +197,7 @@ window.addEventListener("load", load);
 
 //This is called when submit button is clicked from All done page 
 function highscores() {
+  timer.setAttribute("style", "display:none;");
   addList.setAttribute("style", "display:block;");
   quizContainer.setAttribute("style", "display:none;");
   var getInitials = document.getElementById("initial").value;
@@ -226,7 +218,7 @@ function highscores() {
 
 //This function is called when the user clicks on the view highscore button
 function viewHighscores() {
-
+  timer.setAttribute("style", "display:none;");
   quizContainer.setAttribute("style", "display:none;");
   var getInitials = document.getElementById("initial").value;
   var arr = [getInitials];
