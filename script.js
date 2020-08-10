@@ -39,9 +39,9 @@ var opt2 = document.getElementById("opt2");
 var opt3 = document.getElementById("opt3");
 var opt4 = document.getElementById("opt4");
 
-
 //Load question and answer in array objects
-var myQuestion = [{
+var myQuestion = [
+  {
     question: "Which one is not a vegetable?",
     options: ["1.orange", "2.Tomato", "3.cabbage", "4.beet"],
     answer: "1.orange",
@@ -77,7 +77,7 @@ var myQuestion = [{
       "1.System Software",
       "2.Application Software",
       "3.utility Software",
-      "Malware ",
+      "4.Malware ",
     ],
     answer: "1.System Software",
   },
@@ -104,7 +104,6 @@ function setTime() {
   content[0].setAttribute("style", "display:inline-block;");
   questionE1.setAttribute("style", "display:block;");
 
-
   hTag.setAttribute("style", "display:none");
   ptag.setAttribute("style", "display:none");
   startBttn.setAttribute("style", "display:none");
@@ -122,7 +121,6 @@ function loadQuestion() {
     questionE1.textContent = currentQuestion + 1 + "." + index.question;
     loadAnswer();
   } else {
-
     navigateAllDone();
   }
 }
@@ -194,8 +192,7 @@ function load() {
 }
 window.addEventListener("load", load);
 
-
-//This is called when submit button is clicked from All done page 
+//This is called when submit button is clicked from All done page
 function highscores() {
   timer.setAttribute("style", "display:none;");
   addList.setAttribute("style", "display:block;");
@@ -211,13 +208,23 @@ function highscores() {
     getNameList = document.createElement("li");
     addList.appendChild(getNameList);
     getNameList.textContent = getInitials + "-" + score;
-
   }
-
+  var getScoreList = {
+    name: getNameList.textContent,
+  };
+  var getstorageList = JSON.parse(localStorage.getItem("list"));
+  if (getstorageList != null) {
+    getstorageList.push(getScoreList);
+    localStorage.setItem("list", JSON.stringify(getstorageList));
+  } else {
+    var value = [getScoreList];
+    localStorage.setItem("list", JSON.stringify(value));
+  }
 }
 
 //This function is called when the user clicks on the view highscore button
 function viewHighscores() {
+  var getstorageList = JSON.parse(localStorage.getItem("list"));
   timer.setAttribute("style", "display:none;");
   quizContainer.setAttribute("style", "display:none;");
   var getInitials = document.getElementById("initial").value;
@@ -225,12 +232,16 @@ function viewHighscores() {
   allDone.setAttribute("style", "display:none;");
   enterInitials.setAttribute("style", "display:none;");
   highscore.setAttribute("style", "display:block;");
-
+  for (var i = 0; i < getstorageList.length; i++) {
+    var storeList = document.createElement("li");
+    addList.appendChild(storeList);
+    storeList.textContent = getstorageList[i].name;
+  }
 }
 //All done page -submit button
 submitBtn.addEventListener("click", highscores);
 
-//This goes back to Start quiz page when the user clicks on "GoBack button" from highscore page 
+//This goes back to Start quiz page when the user clicks on "GoBack button" from highscore page
 function goBack() {
   quizContainer.setAttribute("style", "display:block;");
   highscore.setAttribute("style", "display:none");
@@ -238,7 +249,6 @@ function goBack() {
   hTag.setAttribute("style", "display:block");
   ptag.setAttribute("style", "display:block");
   startBttn.setAttribute("style", "display:inline-block");
-
 }
 
 //Highscore page - This clears the highscore from the list
