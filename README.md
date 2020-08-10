@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+# CodeQuiz
+>>>>>>> fd530d8c7fb0b29c128e0440e3ecf64387263db9
 # 04 Web APIs: Code Quiz:
 This project is about the code Quiz with multiple choice questions.This app will run in the browser and feature dynamically updated HTML and CSS powered by your JavaScript code
 
