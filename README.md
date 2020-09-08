@@ -57,8 +57,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 [product-screenshot1]: images/StartQuizPage.JPG
 [product-screenshot2]: images/questionPage.JPG
-[product-screenshot3]: images/ScoreList.JPG
-[product-screenshot4]: images/HighscorePage.JPG
+[product-screenshot3]: images/HighscorePage.JPG
+[product-screenshot4]: images/ScoreList.JPG
 
 Deployed Links:
 
